@@ -1,5 +1,5 @@
 /* =====================================================================
-   Marco institucional, tema de Reveal.js y composición de diapositivas
+   Marco institucional, tema de Spectacle y composición de diapositivas
    ===================================================================== */
 
 /* ---------- Contenedor y Overlay del Marco Institucional ------------- */
@@ -295,16 +295,16 @@ div[class*="TemplateWrapper"] {
   align-items: baseline;
 }
 
-/* Aparición escalonada solo en la diapositiva presente */
-.reveal .slides section.present .stagger > * {
+/* Aparición escalonada de elementos */
+.stagger > * {
   animation: fadeUp var(--dur-med) ease-out both;
 }
 
-.reveal .slides section.present .stagger > *:nth-child(2) { animation-delay: 80ms; }
-.reveal .slides section.present .stagger > *:nth-child(3) { animation-delay: 160ms; }
-.reveal .slides section.present .stagger > *:nth-child(4) { animation-delay: 240ms; }
-.reveal .slides section.present .stagger > *:nth-child(5) { animation-delay: 320ms; }
-.reveal .slides section.present .stagger > *:nth-child(6) { animation-delay: 400ms; }
+.stagger > *:nth-child(2) { animation-delay: 80ms; }
+.stagger > *:nth-child(3) { animation-delay: 160ms; }
+.stagger > *:nth-child(4) { animation-delay: 240ms; }
+.stagger > *:nth-child(5) { animation-delay: 320ms; }
+.stagger > *:nth-child(6) { animation-delay: 400ms; }
 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(10px); }

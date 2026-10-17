@@ -7,7 +7,6 @@
 - **Semestre:** Quinto Semestre
 - **Asignatura:** Lenguajes y Automatas I
 - **Docente:** JUAN PABLO SERRANO RUBIO
-- **Estudiante:** Miguel Adrian Rivera Jaime (IS24110500)
 - **Competencia No. 3:** Crear y reconocer automatas finitos en un lenguaje de programacion para la solucion de un problema
 - **Fecha:** Octubre 2026
 - **Repositorio:** [https://github.com/MiguelRivera-dev/Presentacion-AFD-y-AFND.git](https://github.com/MiguelRivera-dev/Presentacion-AFD-y-AFND.git)
