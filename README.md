@@ -1,209 +1,214 @@
-# Presentación Académica Interactiva sobre Autómatas Finitos (React.js + Spectacle + Vite)
+# Presentacion Academica Interactiva sobre Automatas Finitos
+## React.js + Spectacle + Vite · Identidad Institucional ITESI
 
-### Instituto Tecnológico Superior de Irapuato (ITESI)
-**Carrera:** Ingeniería en Sistemas Computacionales  
-**Asignatura:** Lenguajes y Autómatas I (Quinto Semestre)  
-**Competencia No. 3:** *Crear y reconocer autómatas finitos en un lenguaje de programación para la solución de un problema*  
-**Dirección Institucional:** Carretera Irapuato-Silao km 12.5, Col. El Copal, Irapuato, Gto.  
-**Portal Web:** [irapuato.tecnm.mx](https://irapuato.tecnm.mx)  
-
----
-
-## 🌟 Descripción General
-
-Esta aplicación web combina la potencia pedagógica del motor de presentaciones en React **Spectacle 10** con **React.js 18** y el empaquetador ultrarrápido **Vite 6** para transformar la exposición tradicional en una **experiencia académica interactiva universitaria de clase mundial**.
-
-Diseñada bajo las pautas oficiales de **identidad visual institucional del ITESI** adaptada para proyección en aula (fondo oscuro de alto contraste $\ge 4.5:1$), integra:
-- **Logotipo Oficial ITESI**: Cargado directamente desde la carpeta `img/` institucional (`img/ITESI_h23.png`).
-- Definiciones matemáticas formales con **KaTeX** sin dependencias externas.
-- Diagramas de estados vectoriales interactivos en **SVG puro**.
-- Steppers paso a paso para la **Construcción de Subconjuntos (Rabin-Scott)**, **Thompson** y **Minimización de Particiones (Moore)**.
-- **Simulador en vivo del Analizador Léxico** de constantes numéricas (enteros, decimales y notación científica) ejecutando lógica matemática pura en JavaScript.
-- **Sección técnica en inglés (Technical English)** con glosario de términos y guion oral bilingüe conmutable.
-- **Modo 100% Offline**: tipografías Montserrat y JetBrains Mono autoalojadas localmente mediante paquetes `@fontsource/*`.
+### Datos Academicos del Proyecto
+- **Institucion:** Instituto Tecnologico Superior de Irapuato (ITESI)
+- **Carrera:** Ingenieria en Sistemas Computacionales
+- **Semestre:** Quinto Semestre
+- **Asignatura:** Lenguajes y Automatas I
+- **Docente:** JUAN PABLO SERRANO RUBIO
+- **Estudiante:** Miguel Adrian Rivera Jaime (IS24110500)
+- **Competencia No. 3:** Crear y reconocer automatas finitos en un lenguaje de programacion para la solucion de un problema
+- **Fecha:** Octubre 2026
+- **Repositorio:** [https://github.com/MiguelRivera-dev/Presentacion-AFD-y-AFND.git](https://github.com/MiguelRivera-dev/Presentacion-AFD-y-AFND.git)
 
 ---
 
-## 🏛️ Identidad Visual Institucional y Marco Fijo (3 Zonas)
+## 1. Descripcion General
 
-La presentación está contenida en un marco institucional fijo (`InstitutionalFrame.jsx`) sincronizado bidireccionalmente con el motor de Spectacle (`DeckContext`):
+Esta aplicacion web interactiva transforma la exposicion tradicional de teoria de la computacion en una experiencia de aprendizaje dinamica y rigurosa, disenada para proyectarse en aulas universitarias con una relacion de contraste superior a 4.5:1 sobre fondo oscuro.
 
-1. **Encabezado Institucional (56 px, Fondo Blanco):**
-   - Franja de logotipos oficiales (Gobierno de México, SEP Educación, TecNM, SEG Guanajuato y el **Logotipo Oficial ITESI** desde `img/ITESI_h23.png`).
-   - Título oficial: `Autómatas Finitos · Competencia No. 3`.
-   - **Barra de Accesibilidad (A11y):** Alternador de modo de **Alto Contraste** y controles de escala de fuente **A+** / **A−**.
-2. **Barra de Pestañas ITESI (40 px, Fondo `#1B396A`):**
-   - Menú horizontal: `Inicio | 3.1 Clasificación | 3.2 Conversión | 3.3 Thompson | 3.4 Minimización | 3.5 Caso de Estudio | English | Conclusiones`.
-   - **Integración con Spectacle:** La pestaña activa se sincroniza automáticamente con el índice de diapositiva (`activeView.slideIndex`). Al hacer clic en una pestaña se invoca la API `deck.skipTo({ slideIndex, stepIndex: 0 })` sin recargar la página.
-3. **Pie Institucional (32 px):**
-   - Dirección oficial: *Instituto Tecnológico Superior de Irapuato · Carr. Irapuato-Silao km 12.5, Col. El Copal, Irapuato, Gto.*
-   - Contador de diapositivas en tiempo real (ej. `1 / 24`).
+Desarrollada con **React.js 18**, **Spectacle 10** y **Vite 6**, integra en un unico ecosistema componentes teoricos formales, procedimientos matematicos paso a paso, diagramas vectoriales interactivos en SVG, simuladores de ejecucion en tiempo real con cinta de lectura y un caso de estudio funcional de un analizador lexico numerico.
 
-### Semántica de Color Fija (Variables CSS en `:root`):
-| Variable | Color | Significado Estricto en toda la Presentación |
-| :--- | :---: | :--- |
-| `--structure` | `#5BA4F5` | Estructura del autómata, estados no finales, títulos |
-| `--active` | `#FBBF24` | Estado o transición que se está ejecutando **ahora mismo** |
-| `--accept` | `#34D399` | Estados de aceptación (doble círculo), veredicto de éxito |
-| `--reject` | `#F87171` | Estado de trampa (`dead`), transiciones erróneas, rechazo |
-| `--itesi-blue` | `#1B396A` | Azul institucional para barra de navegación y acentos |
-| `--bg` | `#0A1630` | Fondo principal oscuro para proyección en aula |
-| `--surface` | `#12234A` | Tarjetas, tablas y paneles |
+La identidad visual toma como base los lineamientos del Instituto Tecnologico Superior de Irapuato (ITESI), incorporando el logotipo oficial desde el directorio `img/` institucional (`img/ITESI_h23.png`), tipografias tecnicas autoalojadas y un marco de navegacion unificado con sincronizacion de diapositivas en tiempo real.
 
 ---
 
-## 📁 Archivos de Logotipos y Recursos en `img/` y `public/`
+## 2. Contenido Tematico de la Presentacion (22 Diapositivas)
 
-El proyecto utiliza el logotipo institucional oficial provisto en la carpeta `img/`:
+La presentacion se compone de 22 diapositivas agrupadas en 7 secciones accesibles mediante la barra de pestañas superior:
 
-| Archivo | Ubicación | Descripción |
-| :--- | :--- | :--- |
-| `img/ITESI_h23.png` | Raíz del proyecto / `img/` | Logotipo vectorial oficial del Instituto Tecnológico Superior de Irapuato |
-| `public/img/ITESI_h23.png` | Servido por Vite | Versión servida en producción y desarrollo web |
-| `public/assets/buho.png` | `public/assets/` | Mascota institucional (Búho blanco ITESI) |
-| `public/assets/gob-mx.png` | `public/assets/` | Escudo Gobierno de México |
-| `public/assets/sep-logo.png` | `public/assets/` | Logotipo Secretaría de Educación Pública |
-| `public/assets/tecnm-logo.png` | `public/assets/` | Logotipo del Tecnológico Nacional de México |
-| `public/assets/seg-logo.png` | `public/assets/` | Logotipo SEG Guanajuato |
+### Seccion 1: Inicio (Diapositivas 1 y 2)
+- **Diapositiva 1 · Portada Institucional:** Comunicado oficial con emblema institucional ITESI, buho representativo, nombre de la asignatura, competencia, datos del estudiante y docente.
+- **Diapositiva 2 · Mosaico Tematico:** Tablero interactivo inspirado en la oferta educativa del portal ITESI, que permite saltar directamente a cualquiera de los modulos tematicos.
 
-*Nota: La aplicación incluye fallbacks visuales automáticos con bordes institucionales si algún recurso visual llegara a faltar.*
+### Seccion 2: Tema 3.1 · Automatas Finitos y Clasificacion (Diapositivas 3 a 6)
+- **Diapositiva 3 · Caratula divisoria del Tema 3.1.**
+- **Diapositiva 4 · Definicion Formal de la Quintupla:** Desglose riguroso de M = (Q, Sigma, delta, q0, F) con KaTeX y casos de aplicacion en compiladores, protocolos de red y circuitos digitales.
+- **Diapositiva 5 · Clasificacion AFD vs. AFND:** Comparativa de funciones de transicion (mapeo determinista a Q vs. conjunto potencia P(Q)), transiciones espontaneas vacias y Teorema Fundamental de Equivalencia (L_AFD = L_AFND = REG).
+- **Diapositiva 6 · Simulador Interactivo del AFD '01':** Reconocedor de cadenas binarias con sufijo '01'. Incluye cinta de caracteres, iluminacion secuencial de nodos y aristas activas, selector de cadenas preset y ejecucion automatica o manual paso a paso.
+
+### Seccion 3: Tema 3.2 · Conversion de AFND a AFD (Diapositivas 7 a 10)
+- **Diapositiva 7 · Caratula divisoria del Tema 3.2.**
+- **Diapositiva 8 · Construccion de Subconjuntos (Algoritmo de Rabin-Scott):** Fundamento de la cerradura-epsilon, generacion inductiva de superestados y demostracion de la cota superior teorica de 2^n estados.
+- **Diapositiva 9 · Procedimiento Paso a Paso (Stepper):** Visualizacion dual simultanea del AFND original y del AFD resultante, mostrando la evolucion de la tabla de transiciones en 4 etapas.
+- **Diapositiva 10 · Banco de Pruebas de Equivalencia:** Tabla interactiva con cadenas de prueba evaluadas simultaneamente en ambos modelos para comprobar la igualdad de lenguajes.
+
+### Seccion 4: Tema 3.3 · Expresiones Regulares mediante AFND (Diapositivas 11 a 13)
+- **Diapositiva 11 · Caratula divisoria del Tema 3.3.**
+- **Diapositiva 12 · Operadores e Invariantes del Algoritmo de Thompson:** Construccion inductiva para fragmentos primitivos, union, concatenacion y cerradura de Kleene con complejidad O(m).
+- **Diapositiva 13 · Construccion Paso a Paso de r = (a | b)* a:** Diagrama vectorial completo del AFND resultante de 10 estados con transiciones vacias (epsilon), arcos de salto y retorno, y verificacion de cadenas validas e invalidas.
+
+### Seccion 5: Tema 3.4 · Minimizacion de Estados de un AFD (Diapositivas 14 a 16)
+- **Diapositiva 14 · Caratula divisoria del Tema 3.4.**
+- **Diapositiva 15 · Optimizacion Formal y Teorema de Myhill-Nerode:** Eliminacion de estados inalcanzables via BFS/DFS, clases de equivalencia de Moore y garantia del automata minimo canonico unico.
+- **Diapositiva 16 · Procedimiento de Refinamiento de Particiones:** Ejemplo practico con un modelo que reconoce cadenas binarias no vacias de longitud par (|w| en {2, 4, 6, ...}). Ilustra como el automata original de 6 estados bifurcaba innecesariamente caminos para '0' y '1', y como el refinamiento de Moore colapsa los estados indistinguibles en 3 estados canonicos (50% de optimizacion).
+
+### Seccion 6: Tema 3.5 · Caso de Estudio: Analizador Lexico (Diapositivas 17 a 20)
+- **Diapositiva 17 · Caratula divisoria del Tema 3.5.**
+- **Diapositiva 18 · Especificacion del Tokenizador Numerico:** Expresion regular completa para constantes numericas enteras, de punto flotante y cientificas con exponente e/E y signo opcional.
+- **Diapositiva 19 · Simulador en Vivo del Tokenizador:** Interfaz con presets rapidos (42, -3.14159, 1.05e-4, 3., 1e) que ejecuta el automata lexico, muestra la transicion activa y clasifica el token resultante.
+- **Diapositiva 20 · Demostracion en Vivo en VS Code:** Arquitectura del software desacoplado en JavaScript puro y guia de ejecucion en entorno de desarrollo.
+
+### Seccion 7: Conclusiones y Bibliografia (Diapositivas 21 y 22)
+- **Diapositiva 21 · Sintesis del Pipeline y Logro de la Competencia:** Cadena de transformacion Regex -> Thompson -> Rabin-Scott -> Moore -> Software de produccion.
+- **Diapositiva 22 · Bibliografia Formal:** Referencias academicas en formato APA (Hopcroft, Sipser, Aho y Linz).
 
 ---
 
-## 🚀 Instalación y Ejecución Local en Visual Studio Code
+## 3. Decisiones de Arquitectura y Diseno
 
-### Requisitos previos
-- **Node.js** (v18.0.0 o superior recomendada).
-- **npm** (incluido con Node.js).
-- Navegador web moderno (Chrome, Edge, Firefox).
+### Motor de Diapositivas: Spectacle 10 en lugar de Reveal.js
+Para garantizar una integracion nativa con el ciclo de vida de React 18 sin conflictos de manipulacion directa del DOM, la aplicacion utiliza **Spectacle 10**. Esto permite:
+- Control declarativo de diapositivas mediante JSX.
+- Sincronizacion directa con el contexto `DeckContext`.
+- Navegacion programatica instantanea a traves de la barra de pestañas superior sin recargas de pagina.
+- Rendimiento optimizado sin dependencias externas pesadas.
 
-### Pasos de ejecución:
+### Marco Institucional Unificado (InstitutionalFrame)
+- **Barra Superior Integrada:** Integra el logotipo oficial del ITESI (`/img/ITESI_h23.png`) y 7 botones de navegacion seccional. La pestaña activa se resalta automaticamente segun la diapositiva en curso.
+- **Pie Discreto:** Proporciona controles de accesibilidad para ajuste fino de tamaño de letra (A- / A+) en la esquina inferior izquierda y un contador de diapositivas en tiempo real (`N / 22`) en la esquina inferior derecha.
+- **Eliminacion de Elementos Redundantes:** Se removieron franjas externas gubernamentales, botones superfluos y textos extensos de pie de pagina para maximizar el area util de proyeccion.
 
-1. **Abrir la terminal en la carpeta del proyecto:**
+### Motor de Graficado Vectorial (StateDiagram)
+- Rutas matematicas bezier (`M ... Q ...`) calculadas dinamicamente segun la orientacion relativa de los estados.
+- Las curvas superiores e inferiores salen y llegan por los cuadrantes diagonales de los circulos (+-45 grados), evitando atravesar el eje horizontal donde se ubican las transiciones directas.
+- Soporte para desplazamiento de insignias (`labelPos` y `labelOffset`) en aristas cruzadas en 'X'.
+- Separacion automatica entre identificador de estado (A, B, C) centrado en el circulo y etiqueta de subconjunto ({q0}, [q1, q3]) posicionada como subtexto inferior.
+
+### Paleta de Colores de Alto Contraste
+- `--bg: #0A1630`: Fondo azul marino profundo para proyeccion sin fatiga visual.
+- `--surface: #12234A`: Fondo de tarjetas, paneles y simuladores.
+- `--structure: #5BA4F5`: Azul celeste para estructura, estados no finales y titulos.
+- `--active: #FBBF24`: Ambar brillante para el estado y transicion en ejecucion.
+- `--accept: #34D399`: Verde esmeralda para estados de aceptacion (doble anillo) y cadenas validas.
+- `--reject: #F87171`: Rojo suave para estado de trampa, transiciones invalidas y rechazo.
+
+### Modo 100% Sin Conexion (Offline)
+Todas las fuentes tipograficas estan empaquetadas localmente a traves de `@fontsource/montserrat` y `@fontsource/jetbrains-mono`, y las formulas matematicas son renderizadas localmente por KaTeX, permitiendo proyectar la presentacion sin requerir conexion a internet.
+
+---
+
+## 4. Estructura del Proyecto
+
+```text
+Presentacion/
+├── .gitignore                      # Reglas de exclusion de Git
+├── index.html                      # Punto de entrada HTML
+├── package.json                    # Definicion de dependencias y scripts
+├── package-lock.json               # Arbol de dependencias bloqueado
+├── vite.config.js                  # Configuracion de Vite y puerto 3000
+├── README.md                       # Documentacion tecnica del proyecto
+├── Instrucciones.md                # Requerimientos y especificaciones originales
+├── Guion_Exposicion.md             # Guion detallado del orador minuto a minuto
+├── img/
+│   └── ITESI_h23.png               # Logotipo oficial ITESI provisto
+├── public/
+│   ├── assets/
+│   │   ├── buho.png                # Mascota institucional ITESI
+│   │   └── itesi-logo.png          # Variante grafica institucional
+│   └── img/
+│       └── ITESI_h23.png           # Logotipo servido por Vite
+└── src/
+    ├── main.jsx                    # Entrada principal de React
+    ├── App.jsx                     # Mapeo de diapositivas y configuracion de Spectacle
+    ├── automata/
+    │   ├── definitions.js          # Quintuplas, tablas y grafos de todos los temas
+    │   └── simulation.js           # Motores de simulacion de AFD y analizador lexico
+    ├── components/
+    │   ├── AutomatonSimulator.jsx  # Componente reactivo con cinta y controles de paso
+    │   ├── CodePanel.jsx           # Visor de codigo fuente con resaltado sintetico
+    │   ├── InstitutionalFrame.jsx  # Marco superior e inferior con logotipos y a11y
+    │   ├── MathView.jsx            # Envoltorio para formulas KaTeX
+    │   ├── StateDiagram.jsx        # Renderizador vectorial SVG de automatas
+    │   ├── StepController.jsx      # Barra de control para procedimientos paso a paso
+    │   └── TransitionTable.jsx     # Tablas academicas formales
+    ├── slides/
+    │   ├── Introduction.jsx        # Diapositivas 1 y 2: Portada y Mosaico
+    │   ├── Topic31.jsx             # Diapositivas 3 a 6: Fundamentos y AFD 01
+    │   ├── Topic32.jsx             # Diapositivas 7 a 10: Conversion de subconjuntos
+    │   ├── Topic33.jsx             # Diapositivas 11 a 13: Algoritmo de Thompson
+    │   ├── Topic34.jsx             # Diapositivas 14 a 16: Minimizacion de estados
+    │   ├── Topic35.jsx             # Diapositivas 17 a 19: Analizador lexico numerico
+    │   ├── LiveDemo.jsx            # Diapositiva 20: Demostracion en vivo en VS Code
+    │   └── Conclusions.jsx         # Diapositivas 21 y 22: Sintesis y Bibliografia
+    └── styles/
+        ├── global.css              # Reset, fuentes @fontsource y variables CSS
+        ├── presentation.css        # Diseno de diapositivas, tarjetas, marcos y layout
+        └── diagrams.css            # Estilos de nodos SVG, pulsos, aristas y tablas
+```
+
+---
+
+## 5. Instalacion y Ejecucion Local
+
+### Requisitos del Sistema
+- Node.js version 18.0.0 o superior instalada.
+- Gestor de paquetes npm.
+
+### Instrucciones de Arranque
+1. Clonar el repositorio o ingresar a la carpeta del proyecto:
    ```bash
-   cd "C:\Users\Adrian\OneDrive\Documentos\ITESI\Quinto Semestre\Juanpu\Presentacion"
+   git clone https://github.com/MiguelRivera-dev/Presentacion-AFD-y-AFND.git
+   cd Presentacion-AFD-y-AFND
    ```
 
-2. **Instalar dependencias declaradas en `package.json`:**
+2. Instalar las dependencias del proyecto:
    ```bash
    npm install
    ```
 
-3. **Iniciar el servidor local de desarrollo con Vite:**
+3. Iniciar el servidor local de desarrollo:
    ```bash
    npm run dev
    ```
 
-4. **Visualizar la presentación:**
-   Abra en su navegador la URL mostrada en consola:
+4. Abrir en el navegador:
    ```text
    http://localhost:3000
    ```
 
-5. **Compilar para producción (validación de empaquetado):**
-   ```bash
-   npm run build
-   ```
-
----
-
-## ⌨️ Controles de Teclado y Navegación
-
-| Tecla | Acción |
-| :---: | :--- |
-| **`→`** o **`Espacio`** | Avanzar a la siguiente diapositiva (Spectacle) |
-| **`←`** | Regresar a la diapositiva anterior |
-| **Pestañas superiores** | Salto directo a cualquier tema mediante la API `skipTo` de Spectacle |
-| **Mosaico temático (Slide 2)** | Clic en cualquier tarjeta para navegar directamente a ese tema |
-| **Inputs de texto** | Escribir en los simuladores sin interferencia (las teclas de flecha no cambian diapositivas al interactuar con `<input>`) |
-| **`Alt + P`** | Modo presentador de Spectacle |
-| **`Alt + O`** | Vista de cuadrícula / visión general (Overview Mode) |
-| **`F`** | Modo pantalla completa nativo del navegador |
-
----
-
-## 📑 Estructura de Diapositivas (24 Diapositivas)
-
-```text
-Diapositiva 01  [Inicio]       Portada institucional tipo comunicado con logotipo oficial ITESI y metadatos
-Diapositiva 02  [Inicio]       Mosaico temático interactivo estilo oferta educativa ITESI
-Diapositiva 03  [Tema 3.1]     Divisoria 3.1: Autómatas Finitos y Clasificación
-Diapositiva 04  [Tema 3.1]     Fundamentación matemática: Quíntupla formal M = (Q, Σ, δ, q₀, F)
-Diapositiva 05  [Tema 3.1]     Comparación rigurosa: AFD vs. AFND y Teorema de Equivalencia
-Diapositiva 06  [Tema 3.1]     Simulador interactivo del AFD para cadenas binarias terminadas en '01'
-Diapositiva 07  [Tema 3.2]     Divisoria 3.2: Conversión de AFND a AFD
-Diapositiva 08  [Tema 3.2]     Construcción de subconjuntos, cerradura-ε y cota de explosión 2ⁿ
-Diapositiva 09  [Tema 3.2]     Stepper paso a paso de conversión (subconjuntos A, B y C)
-Diapositiva 10  [Tema 3.2]     Pruebas empíricas de equivalencia de lenguajes L(N) = L(D)
-Diapositiva 11  [Tema 3.3]     Divisoria 3.3: Expresiones Regulares mediante AFND
-Diapositiva 12  [Tema 3.3]     Operadores de álgebra regular e invariantes lineales O(m) de Thompson
-Diapositiva 13  [Tema 3.3]     Stepper de construcción de Thompson por etapas para (a | b)* a
-Diapositiva 14  [Tema 3.4]     Divisoria 3.4: Minimización de Estados de un AFD
-Diapositiva 15  [Tema 3.4]     Estados inalcanzables, clases de equivalencia y Teorema de Myhill-Nerode
-Diapositiva 16  [Tema 3.4]     Stepper interactivo de minimización por particiones (reducción de 6 a 3 estados: 50%)
-Diapositiva 17  [Tema 3.5]     Divisoria 3.5: Aplicaciones y Caso de Estudio Práctico
-Diapositiva 18  [Tema 3.5]     Especificación formal del Analizador Léxico Numérico de Compiladores
-Diapositiva 19  [Tema 3.5]     Simulador interactivo en vivo del Lexer (enteros, flotantes y notación científica)
-Diapositiva 20  [Sección 4]    Demostración en vivo en VS Code y visor de código fuente
-Diapositiva 21  [Sección 5]    Divisoria English: Technical Presentation
-Diapositiva 22  [Sección 5]    Subset Construction in English, Technical Glossary y guion oral bilingüe
-Diapositiva 23  [Conclusiones] Síntesis del pipeline computacional y verificación de la Competencia No. 3
-Diapositiva 24  [Conclusiones] Bibliografía académica en formato APA y franja de sitios de interés institucional
+### Generacion del Paquete de Produccion
+Para compilar la aplicacion optimizada para produccion:
+```bash
+npm run build
+```
+Los archivos estaticos generados se ubicaran en la carpeta `dist/`. Para previsualizar el bundle de produccion localmente:
+```bash
+npm run preview
 ```
 
 ---
 
-## 🔬 Arquitectura del Código Fuente
+## 6. Controles de Navegacion durante la Exposicion
 
-```text
-Presentacion/
-├── img/
-│   └── ITESI_h23.png               # Logotipo oficial del ITESI provisto por el usuario
-├── public/
-│   ├── img/
-│   │   └── ITESI_h23.png           # Logotipo ITESI servido para el encabezado y portada
-│   └── assets/                     # buho.png, logos de ITESI y TecNM
-├── src/
-│   ├── automata/                   # LÓGICA MATEMÁTICA PURA (desacoplada de React)
-│   │   ├── definitions.js          # Quíntuplas formales, tablas de transición y pasos de los 5 temas
-│   │   └── simulation.js           # Motores de evaluación determinista lineal O(|w|)
-│   ├── components/                 # COMPONENTES REUTILIZABLES
-│   │   ├── InstitutionalFrame.jsx  # Marco institucional de 3 zonas con logotipos, tabs y accesibilidad
-│   │   ├── StateDiagram.jsx        # Renderizador de grafos SVG con animación de nodos y aristas
-│   │   ├── TransitionTable.jsx     # Tablas de transición con resaltado de estado activo
-│   │   ├── AutomatonSimulator.jsx  # Simulador universal con cinta de símbolos y presets
-│   │   ├── StepController.jsx      # Controlador de pasos con indicadores numerados
-│   │   ├── CodePanel.jsx           # Visor de código con tema VS Code Dark+
-│   │   └── MathView.jsx            # Renderizador KaTeX con soporte display e inline
-│   ├── slides/                     # COMPONENTES DE DIAPOSITIVAS (Spectacle <Slide>)
-│   │   ├── Introduction.jsx        # Portada comunicada con logo ITESI y mosaico temático
-│   │   ├── Topic31.jsx             # Tema 3.1: Quíntupla, clasificación y simulador 01
-│   │   ├── Topic32.jsx             # Tema 3.2: Subconjuntos y stepper de conversión
-│   │   ├── Topic33.jsx             # Tema 3.3: Expresiones regulares y stepper de Thompson
-│   │   ├── Topic34.jsx             # Tema 3.4: Particiones y stepper de minimización
-│   │   ├── Topic35.jsx             # Tema 3.5: Analizador léxico y simulador numérico
-│   │   ├── LiveDemo.jsx            # Sección 4: Guion de demostración y código
-│   │   ├── EnglishSection.jsx      # Sección 5: Exposición técnica en inglés con apoyo en español
-│   │   └── Conclusions.jsx         # Cierre, bibliografía APA y enlaces institucionales
-│   ├── styles/                     # SISTEMA DE DISEÑO CSS3
-│   │   ├── global.css              # Variables :root, resets, tokens y modo alto contraste
-│   │   ├── presentation.css        # Marco institucional, tema Spectacle, tarjetas y layouts
-│   │   └── diagrams.css            # Estilos vectoriales SVG, pulsos de nodos y tablas académicas
-│   ├── App.jsx                     # Componente raíz con Deck de Spectacle y plantilla institucional
-│   └── main.jsx                    # Punto de entrada con fuentes autoalojadas importadas
-├── Guion_Exposicion.md             # Guion detallado del orador para la defensa de 20-30 min
-├── Instrucciones.md                # Requisitos del proyecto institucional
-├── package.json                    # Dependencias estrictas (React, Spectacle, KaTeX, Fontsource)
-├── vite.config.js                  # Configuración de Vite en puerto 3000
-└── index.html                      # Documento base HTML5
-```
+| Tecla / Accion | Funcion |
+| :--- | :--- |
+| **Flecha Derecha** o **Espacio** | Avanzar a la siguiente diapositiva |
+| **Flecha Izquierda** | Retroceder a la diapositiva anterior |
+| **Pestañas Superiores** | Saltar directamente a cualquier seccion tematica |
+| **Boton Auto / Pausar** | Reproducir o pausar la simulacion automatica de cadenas |
+| **Boton Paso** | Avanzar manualmente un caracter en la cinta del automata |
+| **Boton Reiniciar** | Volver al estado inicial de la evaluacion actual |
+| **Botones Preset** | Cargar cadenas de prueba predefinidas (validas e invalidas) |
+| **Botones A- / A+** | Disminuir o aumentar la escala de fuente para la proyeccion |
+| **F11** | Activar el modo de pantalla completa en el navegador |
 
 ---
 
-## 📚 Bibliografía Académica (Formato APA)
+## 7. Referencias Bibliograficas
 
-1. **Hopcroft, J. E., Motwani, R., & Ullman, J. D.** (2006). *Introduction to Automata Theory, Languages, and Computation* (3rd ed.). Pearson / Addison-Wesley.
-2. **Sipser, M.** (2013). *Introduction to the Theory of Computation* (3rd ed.). Cengage Learning.
-3. **Aho, A. V., Lam, M. S., Sethi, R., & Ullman, J. D.** (2006). *Compilers: Principles, Techniques, and Tools* (2nd ed. - "Dragon Book"). Addison-Wesley.
-4. **Linz, P.** (2016). *An Introduction to Formal Languages and Automata* (6th ed.). Jones & Bartlett Learning.
-5. **Rabin, M. O., & Scott, D.** (1959). *Finite Automata and Their Decision Problems*. IBM Journal of Research and Development, 3(2), 114–125.
+- **Hopcroft, J. E., Motwani, R., & Ullman, J. D.** (2006). *Introduction to Automata Theory, Languages, and Computation* (3ra ed.). Pearson / Addison-Wesley.
+- **Sipser, M.** (2013). *Introduction to the Theory of Computation* (3ra ed.). Cengage Learning.
+- **Aho, A. V., Lam, M. S., Sethi, R., & Ullman, J. D.** (2006). *Compilers: Principles, Techniques, and Tools* (2da ed. - Dragon Book). Addison-Wesley.
+- **Linz, P.** (2016). *An Introduction to Formal Languages and Automata* (6ta ed.). Jones & Bartlett Learning.

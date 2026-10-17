@@ -80,6 +80,9 @@ export default function Topic34() {
           <div className="slide-head">
             <div className="slide-kicker">Tema 3.4 &bull; Refinamiento de Particiones</div>
             <h2 className="slide-title">Minimización Interactiva: De 6 Estados a 3 Óptimos</h2>
+            <div style={{ fontSize: '15px', color: 'var(--structure)', marginTop: '2px' }}>
+              <strong>Lenguaje modelo:</strong> Cadenas binarias con longitud par y no vacía (<MathView math="|w| \ge 2, |w| \equiv 0 \pmod 2" />).
+            </div>
           </div>
 
           <StepController

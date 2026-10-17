@@ -243,6 +243,7 @@ export const MINIMIZATION_DATA = {
     initialState: 'q0',
     finalStates: ['q2', 'q4'],
     unreachableStates: ['q5'],
+    languageDesc: "Cadenas binarias con número par de símbolos (|w| ≥ 2, no vacías)",
     transitions: {
       q0: { '0': 'q1', '1': 'q3' },
       q1: { '0': 'q2', '1': 'q4' },
@@ -264,7 +265,7 @@ export const MINIMIZATION_DATA = {
     {
       step: 1,
       title: "Paso 1: Detección y Eliminación de Estados Inalcanzables",
-      description: "Recorremos el grafo desde el estado inicial q₀ mediante BFS/DFS. El estado q₅ no tiene ningún camino desde q₀. Se elimina de inmediato.",
+      description: "Recorremos el grafo desde el estado inicial q₀ (BFS/DFS). El estado q₅ no tiene ningún camino que lo alcance. Se elimina de inmediato, quedando 5 estados.",
       removed: ["q₅"],
       activeStates: ["q₀", "q₁", "q₂", "q₃", "q₄"],
       rule: "Un estado p es inalcanzable si no existe w ∈ Σ* tal que δ*(q₀, w) = p."
@@ -272,7 +273,7 @@ export const MINIMIZATION_DATA = {
     {
       step: 2,
       title: "Paso 2: Partición Inicial P₀ (Finales vs No Finales)",
-      description: "Separamos los estados en dos grupos fundamentales: Estados de no aceptación y Estados de aceptación.",
+      description: "Separamos los estados según su condición de aceptación:\n• Grupo I (No finales / longitud 0 o impar): {q₀, q₁, q₃}\n• Grupo II (Finales / longitud par de aceptación): {q₂, q₄}\nObjetivo: Reconocer cadenas con longitud par no nula (|w| ∈ {2, 4, 6, ...}).",
       partitions: [
         { name: "Grupo I (No finales)", states: ["q₀", "q₁", "q₃"] },
         { name: "Grupo II (Finales)", states: ["q₂", "q₄"] }
@@ -281,19 +282,19 @@ export const MINIMIZATION_DATA = {
     },
     {
       step: 3,
-      title: "Paso 3: Refinamiento de Particiones (P₁)",
-      description: "Analizamos transiciones para {q₀, q₁, q₃} con '0' y '1':\n• δ(q₀, 0) = q₁ (Grupo I), δ(q₀, 1) = q₃ (Grupo I)\n• δ(q₁, 0) = q₂ (Grupo II), δ(q₁, 1) = q₄ (Grupo II)\n• δ(q₃, 0) = q₂ (Grupo II), δ(q₃, 1) = q₄ (Grupo II)\nPor tanto, q₀ se distingue de q₁ y q₃. Pero q₁ y q₃ van al mismo grupo con todas las entradas (son equivalentes q₁ ≡ q₃!).",
+      title: "Paso 3: Refinamiento de Particiones de Moore (P₁)",
+      description: "Analizamos transiciones para {q₀, q₁, q₃} con '0' y '1':\n• δ(q₀, 0) = q₁ (Grupo I), δ(q₀, 1) = q₃ (Grupo I)\n• δ(q₁, 0) = q₂ (Grupo II), δ(q₁, 1) = q₄ (Grupo II)\n• δ(q₃, 0) = q₂ (Grupo II), δ(q₃, 1) = q₄ (Grupo II)\nConclusión intuitiva: q₁ y q₃ representan 'longitud impar' (1 símbolo leído); van exactamente al mismo grupo tanto con '0' como con '1'. Por tanto son indistinguibles (q₁ ≡ q₃). Análogamente, q₂ ≡ q₄ representan 'longitud par'.",
       partitions: [
         { name: "G1", states: ["q₀"] },
-        { name: "G2 (Equivalentes q₁ ≡ q₃)", states: ["q₁", "q₃"] },
-        { name: "G3 (Equivalentes q₂ ≡ q₄)", states: ["q₂", "q₄"] }
+        { name: "G2 (Equivalentes q₁ ≡ q₃: longitud impar)", states: ["q₁", "q₃"] },
+        { name: "G3 (Equivalentes q₂ ≡ q₄: longitud par)", states: ["q₂", "q₄"] }
       ],
       rule: "P₁ = { {q₀}, {q₁, q₃}, {q₂, q₄} }. Como P₂ = P₁, el algoritmo converge."
     },
     {
       step: 4,
-      title: "Paso 4: Fusión de Estados y AFD Mínimo",
-      description: "Se fusionan los estados equivalentes:\n• [q₀] -> Estado A\n• [q₁, q₃] -> Estado B\n• [q₂, q₄] -> Estado C (Aceptación)\nDe 6 estados originales pasamos a exactamente 3 estados óptimos (reducción del 50%).",
+      title: "Paso 4: Fusión en Estados Canónicos (AFD Mínimo)",
+      description: "El diseño original bifurcó innecesariamente ramas para '0' y '1'. Al colapsarlas obtenemos la estructura canónica pura de paridad de longitud:\n• Estado A = [q₀]: Longitud 0 (Cadena vacía)\n• Estado B = [q₁, q₃]: Longitud impar (1, 3, 5, ...)\n• Estado C = [q₂, q₄]*: Longitud par no vacía (2, 4, 6, ... ¡Aceptación!)\nDe 6 estados iniciales pasamos a 3 estados mínimos (50% de optimización).",
       reductionStat: "6 estados iniciales → 3 estados mínimos (50% de optimización)"
     }
   ],
