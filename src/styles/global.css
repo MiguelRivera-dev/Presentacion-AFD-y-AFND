@@ -1,0 +1,121 @@
+/* =====================================================================
+   Tokens globales — identidad visual ITESI adaptada a proyección oscura
+   ===================================================================== */
+
+:root {
+  /* --- Marca institucional ------------------------------------------
+     VALOR APROXIMADO: verificar --itesi-blue contra el logotipo oficial
+     (archivo public/assets/itesi-logo.png) y ajustarlo aquí. */
+  --itesi-blue: #1B396A;
+  --header-bg: #FFFFFF;
+
+  /* --- Superficies y texto (contraste ≥ 4.5:1 sobre --bg y --surface) */
+  --bg: #0A1630;
+  --surface: #12234A;
+  --surface-2: #0E1C3D;
+  --border: #2A3F6E;
+  --text: #E6EDF7;        /* ≈ 15:1 sobre --bg */
+  --text-muted: #9FB0CC;  /* ≈ 8:1 sobre --bg, ≈ 7:1 sobre --surface */
+
+  /* --- Colores con significado FIJO en toda la presentación ----------
+     --structure : estructura del autómata (estados, títulos)
+     --active    : lo que se está ejecutando AHORA
+     --accept    : estados finales / aceptación
+     --reject    : rechazo / error
+     No reutilizar estos colores con otro significado. */
+  --structure: #5BA4F5;
+  --active: #FBBF24;
+  --accept: #34D399;
+  --reject: #F87171;
+
+  /* --- Tipografía (autoalojada con @fontsource) --------------------- */
+  --font-sans: 'Montserrat', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', Consolas, monospace;
+
+  /* --- Escala controlada por A+ / A− -------------------------------- */
+  --font-scale: 1;
+  --border-w: 1px;
+
+  /* --- Medidas del marco institucional ------------------------------ */
+  --frame-header-h: 0px;
+  --frame-tabs-h: 42px;
+  --frame-footer-h: 28px;
+
+  /* --- Movimiento ---------------------------------------------------- */
+  --dur-fast: 200ms;
+  --dur-med: 350ms;
+}
+
+/* Modo de alto contraste (botón "Contraste") — más claro y bordes más gruesos */
+:root.a11y-hc {
+  --bg: #000814;
+  --surface: #0B1730;
+  --surface-2: #050F24;
+  --border: #9FB0CC;
+  --text: #FFFFFF;
+  --text-muted: #E6EDF7;
+  --structure: #8EC5FF;
+  --active: #FFD54A;
+  --accept: #5EF0B5;
+  --reject: #FF9C9C;
+  --border-w: 2px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+/* Foco visible para navegación por teclado */
+:focus-visible {
+  outline: 3px solid var(--active);
+  outline-offset: 2px;
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* Respeta la preferencia de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+}
